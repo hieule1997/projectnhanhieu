@@ -1,0 +1,149 @@
+div.orgChart {
+    background-color      : #fff;
+    margin                : 0px;
+    padding               : 20px;
+    z-index               : 1001;
+    /*zoom: 0.8;
+    -moz-transform: scale(0.8);*/
+}
+
+div.orgChart h2 {
+    margin                : 0px;
+    font-size             : 12px;
+    border-bottom         : none;
+    font-weight           : 100 !important;
+}
+
+div.orgChart ul {
+    list-style            : none;
+    margin                : 0px;
+    padding               : 10px;
+    font-size             : 12px;
+    text-align            : left;
+}
+
+div.orgChart ul.stack,
+div.orgChart ul.stack ul {
+    text-align            : center;
+}
+
+div.orgChart table {
+    width                 : 100%;
+}
+
+div.orgChart tr.lines td.line {
+    width                 : 1px;
+    height                : 20px;
+}
+
+div.orgChart tr.lines td.top {
+    border-top            : 2px solid #888;
+}
+
+div.orgChart tr.lines td.left {
+    border-right          : 1px solid #888;
+}
+
+div.orgChart tr.lines td.right {
+    border-left           : 1px solid #888;
+}
+
+div.orgChart td {
+    text-align            : center;
+    vertical-align        : top;
+    padding               : 0px 2px;
+}
+
+div.orgChart div.node {
+    cursor                : default;
+    border                : 1px solid #ccc;
+    display               : inline-block;
+    padding               : 10px 10px;
+    width                 : auto;
+    height                : auto;
+    background-color      : #c5e7ff;
+    line-height           : 12px;
+    border-radius         : 6px;
+    box-shadow            : 0px 0px 3px #888888;
+    -moz-border-radius    : 6px;
+    -moz-box-shadow       : 0px 0px 3px #888888;
+    -webkit-border-radius : 6px;
+    -webkit-box-shadow    : 0px 0px 3px #888888;
+   
+}
+
+div.orgChart div.hasChildren {
+    background-color      : #0095be;
+}
+
+div.orgChart.interactive div.hasChildren {
+    cursor                : pointer;
+}
+div.orgChart div.node:hover {
+    background-color      : #ccc;
+    border:solid 1px #c0c0c0;
+}
+div.orgChart div.node.hover {
+    background-color      : #025682;
+    color:#fff;
+}
+
+div.orgChart div.adjunct.node {
+    position              : absolute;
+    margin-top            : 8px;
+    margin-left           : -110px;
+    width                 : 80px;
+    height                : 40px;
+    background-color      : #efefef;
+}
+
+div.orgChart div.adjunct-link {
+    display               : inline-block;
+    position              : absolute;
+    margin-left           : -20px;
+    margin-top            : 25px;
+    width                 : 20px;
+    border                : 1px dashed black;
+}
+
+/*Custom Style*/
+.hide {
+    display:none;
+    visibility:hidden;
+}
+.long-name {
+    font-size: 12px;
+}
+div.orgChart div.node.level0 {
+    background-color: #025682;
+    color:#fff;
+    border:solid 1px #fff;
+    
+}
+div.orgChart div.node.none-active {
+    background-color: #f5f5f5;
+}
+div.orgChart div.node.none-active:hover {
+     background-color: #ccc;
+     color:#000;
+}
+div.orgChart div.node.addNew {
+   padding:0px !important; 
+   margin:0px !important;
+   background:transparent !important;
+   border-radius         : 0px !important;
+   box-shadow            : none !important;
+   border:none !important;
+}
+
+div.orgChart div.node.addNew .addLeft{
+    background:url(left.gif) no-repeat center center;
+    width:34px;
+    height:34px;
+}
+div.orgChart div.node.addNew .addRight{
+    background:url(right.gif) no-repeat center center;
+    width:34px;
+    height:34px;
+}
+
