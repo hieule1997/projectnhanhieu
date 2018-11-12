@@ -13,7 +13,7 @@ use App\Post;
 use App\Profile;
 use App\Project;
 use App\Video;
-
+use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     /**
@@ -42,7 +42,7 @@ class HomeController extends Controller
     }
      public function blog()
     {
-        $data = Post::paginate(6);
+        $data = News::paginate(6);
 
         return view('blog',compact('data'));
     }
@@ -58,8 +58,8 @@ class HomeController extends Controller
     }
      public function library()
     {
-        $video = Video::paginate(9);
-        $image = Image::paginate(9);
+        $video = Video::paginate(6);
+        $image = Image::paginate(6);
         return view('library',compact('video','image'));
     }
      public function project()
@@ -71,5 +71,21 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         return view('layouts.admin');
+    }
+     public function feedback(Request $request)
+    {
+        Mail::to($request->email)
+            ->send($request->content);
+
+        if(Mail::failures()) {
+            return response()->json(array(
+                'status' => 204,
+                'msg'    => 'success',
+            ));
+        }
+        return response()->json(array(
+            'status' => 400,
+            'msg'    => 'fail',
+        ));
     }
 }

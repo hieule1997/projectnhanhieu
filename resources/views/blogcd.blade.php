@@ -38,7 +38,7 @@
                                                 <div class="img">
                                                     <div class="ImagesFrame">
                                                         <div class="ImagesFrameCrop0">
-                                                            <img src="fontend/images/img-project-7.jpg" alt="">
+                                                            <img src="{{ $item->image}}" alt="">
                                                         </div>
                                                     </div>
                                                     <a href="" class="overl">
@@ -76,7 +76,7 @@
                                                     </div>
                                                 </div> -->
                                                 <div class="continue">
-                                                    <a href="">READ MORE</a>
+                                                    <a href="#">READ MORE</a>
                                                 </div>
                                             </div>
                                         </div>

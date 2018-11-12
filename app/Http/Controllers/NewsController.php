@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\News;
-
+use \Vmorozov\FileUploads\Uploader;
 class NewsController extends Controller
 {
     /**
@@ -30,6 +30,7 @@ class NewsController extends Controller
      */
     public function create()
     {
+        return view('layouts.news.create');
         
     }
 
@@ -41,7 +42,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new News();
+        $model->fill($request->all());
+        $model->newsImage = Uploader::uploadFile($request->file('newsImage'));
+        $model->newsDate = date("Y-m-d H:i:s");
+        $smg = $model->save();
+        return Redirect(route("news.create"));
     }
 
     /**
@@ -63,7 +69,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = News::find($id);
+        return view("layouts.news.edit",compact('model'));
     }
 
     /**
@@ -75,7 +82,17 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = News::findOrFail($id);
+        $pic = $model->image;
+        $model->fill($request->all());
+        if( isset($request->newsImage))
+            $model->newsImage = Uploader::uploadFile($request->file('newsImage'));
+        else {
+            $model->image = $pic;
+        }
+        $model->createDate = date("Y-m-d H:i:s");
+        $model->update();
+        return Redirect( route("news.edit",$id) );
     }
 
     /**
@@ -86,6 +103,19 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $new = News::find($id);
+
+        $msg = $new->delete();
+
+        if ($msg) {
+            return response()->json(array(
+                'status' => 204,
+                'msg'    => 'success',
+            ));
+        }
+        return response()->json(array(
+            'status' => 400,
+            'msg'    => 'fail',
+        ));
     }
 }

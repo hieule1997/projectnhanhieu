@@ -37,7 +37,7 @@
                                                 <div class="img">
                                                     <div class="ImagesFrame">
                                                         <a href="" class="ImagesFrameCrop0">
-                                                            <img src="fontend/images/img-project-5.jpg" alt="" class="wide">
+                                                            <img src="{{ $item->newsImage}}" alt="" class="wide">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -46,7 +46,7 @@
                                                     <p class="date">{{$item->CreateDate}}</p>
                                                     <p class="text">{{$item->Summary}}</p>
                                                     <div class="employee">
-                                                        <p class="by">By <span class="name_">Aazztech</span></p>
+                                                        <p class="by">By <span class="name_">admin</span></p>
                                                         <p class="task">Design</p>
                                                     </div>
                                                 </div>

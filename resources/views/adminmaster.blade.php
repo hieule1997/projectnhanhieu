@@ -61,15 +61,6 @@
                     <p class="menu__desc">Quản lý</p>
                     <ul class="nav-list">
                         <li class="nav-list__item">
-                            <a href="#" class="nav-list__link">
-                               <span class="nav__img">
-                                   <img src="backend/images/icon_3.gif" alt="" class="show__img">
-                                   <img src="backend/images/icon_3.1.gif" alt="" class="hover__img">
-                               </span>
-                           Quản lý dự án nghiên cứu
-                            </a>
-                        </li>
-                        <li class="nav-list__item">
                             <a href="{{ route('project.index')}}" class="nav-list__link">
                                <span class="nav__img">
                                    <img src="backend/images/icon_3.gif" alt="" class="show__img">
@@ -106,28 +97,6 @@
                            Quản lý truyền thông
                         </a>
                         </li>
-                    </ul>
-                    <p class="menu__desc">Cá nhân</p>
-                    <ul class="nav-list">
-                        <li class="nav-list__item">
-                            <a href="#" class="nav-list__link">
-                           <span class="nav__img">
-                               <img src="backend/images/icon_6.gif" alt="" class="show__img">
-                               <img src="backend/images/icon_6.1.gif" alt="" class="hover__img">
-                           </span>
-                           Tùy chỉnh
-                       </a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a href="#" class="nav-list__link">
-                            <span class="nav__img">
-                                <img src="backend/images/icon_7.gif" alt="" class="show__img">
-                                <img src="backend/images/icon_7.1.gif" alt="" class="hover__img">
-                            </span>
-                           Cài đặt tài khoản
-                        </a>
-                        </li>
-
                     </ul>
                 </div>
             </div>

@@ -20,7 +20,7 @@ Route::get('/congdong', 'HomeController@blogcd')->name('blogcd');
 Route::get('/lienhe', 'HomeController@contact')->name('contact');
 Route::get('/thuvien', 'HomeController@library')->name('library');
 Route::get('/duan', 'HomeController@project')->name('project');
-
+Route::post('/feedback', 'HomeController@feedback')->name('feedback');
 Auth::routes();
 Route::resource('post', 'PostController');
 Route::resource('news', 'NewsController');
@@ -29,4 +29,3 @@ Route::resource('image', 'ImageController');
 Route::resource('project', 'ProjectController');
 Route::resource('profile', 'ProfileController');
 
-//edit sản phẩm

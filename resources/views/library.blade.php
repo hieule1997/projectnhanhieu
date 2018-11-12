@@ -49,7 +49,7 @@
                                                             <div class="img">
                                                                 <div class="ImagesFrame">
                                                                     <a class="ImagesFrameCrop0">
-                                                                    <img src="fontend/images/img-project-1.jpg" alt="" class="tall">
+                                                                    <img src="{{ $item->videoFile }}" alt="" class="tall">
                                                                 </a>
                                                                 </div>
                                                                 <!-- Button trigger modal -->
@@ -74,6 +74,9 @@
                                                     </div>
                                                     @endforeach
                                                 </div>
+                                                 <div class="row" id="pages" style="text-align: center;">
+                                                        {{ $video->links() }}
+                                                    </div>
                                             </div>
                                             
                                         </div>
@@ -86,7 +89,7 @@
                                                             <div class="img">
                                                                 <div class="ImagesFrame">
                                                                     <a href="" class="ImagesFrameCrop0">
-                                                                    <img src="fontend/images/img-project-1.jpg" alt="" class="tall">
+                                                                    <img src="{{$item->imageFile }}" alt="" class="tall">
                                                                 </a>
                                                                 </div>
                                                                 <a class="overlay" href="images/img-project-1.jpg" title="" data-lightbox="lightbox">
@@ -98,6 +101,9 @@
                                                         </div>
                                                     </div>
                                                     @endforeach
+                                                </div>
+                                                <div class="row" id="pages" style="text-align: center;">
+                                                    {{ $image->links() }}
                                                 </div>
                                             </div>
                                             

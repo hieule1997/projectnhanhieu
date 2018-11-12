@@ -18,8 +18,9 @@ class ProjectController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    {
-        return view('layouts.project.index');
+    {  
+        $data = Project::paginate(10);
+        return view('layouts.project.index', compact('data'));
     }
 
     /**
@@ -41,28 +42,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {   
-        
+
         $model = new Project();
         $model->projectName = $request->projectName;
-       
         $model->projectTitle = $request->title;
-        
-        move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['name']);
-        $model->projectImage = 'uploads/'.$_FILES['file']['name'];
+        $model->projectImage = Uploader::uploadFile($request->file('projectImage'));
         $model->projectInfor = $request->projectInfor;
         $model->projectText = $request->content;
         $smg = $model->save();
-        if($smg)
-        return response()->json(array('status' => 204,
-            'message'=>'them thanh cong',
-         ));
-            // else {
-            //     return response()->json($arrayName = array('status' => 400,
-            //     'message'=>'Thêm Thành Công',
-            //  ));
-            // }
-       
-        
+        return Redirect(route("project.create"));
     }
 
     /**
@@ -84,7 +72,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Project::find($id);
+
+        return view("layouts.project.edit",compact('model'));
     }
 
     /**
@@ -96,7 +86,17 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = Project::findOrFail($id);
+        $pic = $model->projectImage;
+        // dd($request);
+        $model->fill($request->all());
+        if( isset($request->projectImage))
+            $model->projectImage = Uploader::uploadFile($request->file('projectImage'));
+        else {
+            $model->projectImage = $pic;
+        }
+        $model->update();
+        return Redirect( route("project.edit",$id) );
     }
 
     /**
@@ -107,6 +107,19 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $project = Project::find($id);
+
+        $msg = $project->delete();
+
+        if ($msg) {
+            return response()->json(array(
+                'status' => 204,
+                'msg'    => 'success',
+            ));
+        }
+        return response()->json(array(
+            'status' => 400,
+            'msg'    => 'fail',
+        ));
     }
 }

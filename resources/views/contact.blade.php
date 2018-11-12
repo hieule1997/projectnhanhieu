@@ -65,24 +65,26 @@
                                         </div>
                                         <div class="bs-col lg-50-15 md-60-15 sm-60-15">
                                             <div class="form">
+                                                    @csrf
                                                 <div class="bs-row bs-row-sm15">
                                                     <div class="bs-col sm-50-15">
-                                                        <input type="text" class="user" placeholder="Tên">
+                                                        <input type="text" class="user" name="user" placeholder="Tên">
                                                     </div>
                                                     <div class="bs-col sm-50-15">
-                                                        <input type="text" class="email" placeholder="Email">
+                                                        <input type="text" class="email" name="email" placeholder="Email">
                                                     </div>
                                                     <div class="bs-col sm-50-15">
-                                                        <input type="text" class="phone" placeholder="Điên thoại">
+                                                        <input type="text" class="phone" name="phone" placeholder="Điên thoại">
                                                     </div>
                                                     <div class="bs-col sm-50-15">
-                                                        <input type="text" class="website" placeholder="Website">
+                                                        <input type="text" class="website" name="website" placeholder="Website">
                                                     </div>
                                                     <div class="bs-col sm-100-15">
-                                                        <textarea name="" id="" cols="30" rows="10" placeholder="Description"></textarea>
-                                                        <button class="send">GỬI</button>
+                                                        <textarea name="content" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                                                        <button class="send" id="send" type="button">GỬI</button>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="url" value="{{ route('feedback')}}">
                                             </div>
                                         </div>
                                     </div>
@@ -100,6 +102,42 @@
     <script src="fontend/js/bootstrap.js"></script>
     <script src="fontend/js/lightbox.js"></script>
     <script src="fontend/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $('#send').on('click',function(){
+           var user =   $('input[name="user"]').val();
+           var email =   $('input[name="email"]').val();
+           var phone =   $('input[name="phone"]').val();
+           var website =   $('input[name="website"]').val();
+           var content =   $('textarea[name="content"]').val();
+           var url = $('input[name="url"]').val();
+           $.ajax({
+              "type": "POST",
+              "url": url,
+              "data": {
+                "_token" : "{{csrf_token()}}",
+                "user":user,
+                "email":email,
+                "phone":phone,
+                "website":website,
+                "content":content,
+              },
+              "datatype": "json",
+              success : function(rs) {
+                console.log(rs);
+                if(rs.status == 204)
+                {
+
+                  alert("Gửi thành công");
+
+                }else{
+                  alert('Lỗi');
+                }
+                
+              }
+          });
+        });
+
+    </script>
 <script>
         $(".project-content").find(".tab-item").fadeOut();
         $(".project-content").find(".active").fadeIn();

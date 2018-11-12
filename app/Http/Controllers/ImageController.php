@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Image;
+use App\Video;
+use \Vmorozov\FileUploads\Uploader;
 class ImageController extends Controller
 {
     /**
@@ -17,7 +19,9 @@ class ImageController extends Controller
     }
     public function index()
     {
-        //
+        $image = Image::paginate(24);
+        $video = Video::paginate(24);
+        return view('layouts.image.index',compact('image','video'));
     }
 
     /**
@@ -38,7 +42,11 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new Image();
+        $model->fill($request->all());
+        $model->imageFile = Uploader::uploadFile($request->file('imageFile'));
+        $smg = $model->save();
+        return Redirect(route("image.index"));
     }
 
     /**

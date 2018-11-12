@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Video;
+use \Vmorozov\FileUploads\Uploader;
 class VideoController extends Controller
 {
     /**
@@ -38,7 +39,14 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new Video();
+        // $model->fill($request->all());
+        $model->videoFile = Uploader::uploadFile($request->file('imgvideo'));
+        $model->videoName = $request->file('imgvideo')->getClientOriginalName();
+        $model->videoImage = $request->file('imgvideo')->getClientOriginalName();
+        $model->videoLink = $request->linkvideo;
+        $smg = $model->save();
+        return Redirect(route("image.index"));
     }
 
     /**

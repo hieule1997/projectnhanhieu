@@ -10,16 +10,16 @@
                 <h1 class="title"><img src="backend/images/icon_home.gif" alt=""><img src="backend/images/icon_arrow.gif" alt="" class="arrow">Trang chủ</h1>
             </div>
         <div class="title-right">
-                        <button class="home__btn" type="button"><a href="{{ route('project.create')}}"><span>+</span>thêm bài viết</a></button>
+                        <button class="home__btn" type="button"><a href="{{ route('project.create')}}"><span>+</span>Thêm bài viết</a></button>
                     </div>
                 </div>
                 <div class="web-manager manager-news">
                     <div class="manager-content">
                         <div class="head">
-                            <h3 class="title">QUẢN LÝ TRANG CON</h3>
+                            <h3 class="title">QUẢN LÝ DỰ ÁN</h3>
                         </div>
                         <div class="content">
-                            <div class="tab-control">
+                            <!-- <div class="tab-control">
                                 <div class="control-item active" data-show="#tab-push">
                                     <p class="desc control__push">Đã đưa lên website</p>
                                 </div>
@@ -29,15 +29,17 @@
                                 <div class="control-item" data-show="#tab-recycle">
                                     <p class="desc control__recycle">Thùng rác</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="tab-content">
                                 <div class="tab-item active" id="tab-push">
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
+                                    @foreach($data as $item)
+                                    <div class="item" id="item{{$item->id}}">
+                                        <h4 class="title">{{ $item->projectTitle }}</h4>
+                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">{{$item->updated_at}}</span>
+                                            <!-- <span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p> -->
                                         <div class="img">
                                             <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
+                                                <img src="{{ $item->projectImage}}" alt="">
                                             </div>
                                         </div>
                                         <div class="item-tool">
@@ -45,20 +47,24 @@
                                             <div class="tool-content">
                                                 <ul class="tool-list">
                                                     <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
+                                                        <a href="{{ route ('project.edit',$item->id)}}" class="tool-list__link" class="icon__show">
                                                         <img src="backend/images/edit_icon_black.gif" alt="">
                                                         <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
                                                         Sửa
                                                         </a>
                                                     </li>
+                                                     @php
+                                                                $url_remove = route('project.destroy',$item->id);
+                                                                
+                                                      @endphp
                                                     <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
+                                                        <a class="tool-list__link" href="javascript:;" onclick="confirmRemove('{{$url_remove}}','{{$item->id}}');">
                                                         <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
                                                         <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
                                                         Xóa
                                                         </a>
                                                     </li>
-                                                    <li class="tool-list__item active">
+                                                   <!--  <li class="tool-list__item active">
                                                         <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
                                                         <img src="backend/images/active_icon_black.gif" alt="">
                                                         <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
@@ -71,365 +77,17 @@
                                                         <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
                                                         Hủy kích hoạt
                                                         </a>
-                                                    </li>
+                                                    </li> -->
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="##deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="##deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <h4 class="title">Công trình</h4>
-                                        <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
-                                        <div class="img">
-                                            <div class="img-content">
-                                                <img src="backend/images/manager_img.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="item-tool">
-                                            <button class="edit__btn" type="button"><img src="backend/images/manager_page_icon4.gif" alt=""></button>
-                                            <div class="tool-content">
-                                                <ul class="tool-list">
-                                                    <li class="tool-list__item">
-                                                        <a href="#" class="tool-list__link" class="icon__show">
-                                                        <img src="backend/images/edit_icon_black.gif" alt="">
-                                                        <img src="backend/images/edit_icon_white.gif" alt="" class="icon__hover">
-                                                        Sửa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" show-popup="#delete">
-                                                        <img src="backend/images/delete_icon_black.gif" alt="" class="icon__show">
-                                                        <img src="backend/images/delete_icon_white.gif" alt="" class="icon__hover">
-                                                        Xóa
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item active">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#success">
-                                                        <img src="backend/images/active_icon_black.gif" alt="">
-                                                        <img src="backend/images/active_icon_white.gif" alt="" class="icon__hover">
-                                                        Kích hoạt
-                                                        </a>
-                                                    </li>
-                                                    <li class="tool-list__item">
-                                                        <a class="tool-list__link show__popup" class="icon__show" show-popup="#deactive-success">
-                                                        <img src="backend/images/deactive_icon_black.gif" alt="">
-                                                        <img src="backend/images/deactive_icon_white.gif" alt="" class="icon__hover">
-                                                        Hủy kích hoạt
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="tab-item" id="tab-draft">
+                                <div class="row" id="pages" style="text-align: center;">
+                                    {{ $data->links() }}
+                                </div>
+                                <!-- <div class="tab-item" id="tab-draft">
                                     <div class="item">
                                         <h4 class="title">Công trình</h4>
                                         <p class="desc"><span class="time"><img src="backend/images/icon_clock.gif" alt="">May 19, 2018 9:05 AM</span><span class="comment"><img src="backend/images/icon_comment.gif" alt="">Bình luận(0)</span></p>
@@ -1225,14 +883,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        <div class="popup" id="popup-notice">
+        <!-- <div class="popup" id="popup-notice">
             <div class="popup-content">
                 <div class="popup-item" id="success">
                     <div class="popup-notice">
@@ -1264,9 +922,39 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 @endsection
 @section('js')
+    <script type="text/javascript">
+  
+        function confirmRemove(url,id) {
+          var check = window.confirm('Bạn có chắc chắn muốn xóa');
+          if(check){
+             $.ajax({
+              "type": "DELETE",
+              "url": url,
+              "data": {
+                "_token" : "{{csrf_token()}}",
+                "id":"id"
+              },
+              "datatype": "json",
+              success : function(rs) {
+                console.log(rs);
+                if(rs.status == 204)
+                {
+
+                  $('#item'+id).remove();
+                  alert("xoa thanh cong");
+
+                }else{
+                  alert('loi');
+                }
+                
+              }
+          });
+        }
+      }
+    </script>
      <script>
         $(".control-item").click(function() {
             $(this).siblings().removeClass("active");

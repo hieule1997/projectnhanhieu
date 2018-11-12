@@ -19,7 +19,7 @@
 </head>
 
 <body> 
-    <form method="POST" enctype="mutipart/form-data">
+    <form method="POST" action="{{ route('project.store') }}" enctype="multipart/form-data">
      @csrf
     <div class="web web-edit">
         <section class="section-content">
@@ -29,7 +29,7 @@
                         <div class="header-left">
                             <button class="edit__btn" type="button" id="close">Đóng </button>
                             <!-- <button class="edit__btn" type="button">Xem trước</button> -->
-                            <button class="edit__btn" type="submit" id="save" >Lưu thay đổi</button>
+                            <button class="edit__btn" type="submit" >Lưu thay đổi</button>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="edit-content">
 
                         <div class="img">
-                            <img src="/backend/images/edit_img.jpg" alt="" id="preImg">
+                            <img src="/backend/images/icon_img_social.gif" style="width: 50%" alt="" id="preImg">
                             <!-- <input type="hidden" name="fileImg" id="imgfile"> -->
                             <button class="edit__btn edit__img show__popup" type="button"><img src="/backend/images/icon_edit.gif" alt="">Sửa</button>
                         </div>
@@ -49,13 +49,8 @@
                             <div class="edit-text">
                                 <input type="text" class="edit__input" name="projectTitle" value="">
                             </div>
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         </div>
                         <div class="content">
-                           <!--  <div class="edit-link">
-                                <button class="link__btn" type="button"><img src="/backend/images/icon_link.gif" alt=""></button>
-                                <p class="edit__link">https://jangjang530583949.wordpress.com/home</p>
-                            </div> -->
                             <div>
                                 <label>Tên dự án</label>
                                 <input type="text" name="projectName">
@@ -64,11 +59,9 @@
                                 <label>Thông tin dự án</label>
                                 <input type="text" name="projectInfor">
                             </div>
-                            <div class="edit-text" style="margin-top: 85px;">
+                            <div class="edit-text">
                                 Nội dung dự án
-                                <div class="text-content" >
-
-                                </div>
+                               <textarea class="contentckeditor"></textarea>
 
                             </div>
                         </div>
@@ -79,8 +72,6 @@
                    $url =  route('project.store')
 
                 @endphp
-                <input type="hidden" name="url" value="{{$url}}">
-                <input type="hidden" name="urlback" value="{{ route('project.index') }}">
             </div>
         </section>
     </div>
@@ -97,9 +88,8 @@
                                 <div class="popup-slide">
                                     <div class="item">
                                         <div class="img">
-                                            <img src="/backend/images/edit_img.jpg" alt="" id="showImg">
+                                            <img src="/backend/images/icon_img_social.gif" style="width: 50%" alt="" id="showImg">
                                         </div>
-                                        <!-- <button class="edit__btn edit__img show__popup" type="button"><img src="/backend/images/icon_edit.gif" alt="">Sửa</button> -->
                                     </div>
 
                                 </div>
@@ -114,33 +104,7 @@
                                             <label for="">Chọn ảnh</label>
                                             <input type="file" name="projectImage" id="projectImg">
                                         </div>
-                                        <!-- <div class="item">
-                                            <label for="">Nội dung ảnh</label>
-                                            <textarea name="" id="" cols="30" rows="10" class="edit__textarea"></textarea>
-                                        </div> -->
                                     </div>
-                                   <!--  <div class="bs-col md-100-15 sm-50-15">
-                                        <div class="item">
-                                            <div class="bs-row bs-row-xs15">
-                                                <div class="bs-row xs-50-15">
-                                                    <div class="item-desc">
-                                                        <p class="title">Ngày tải</p>
-                                                        <p class="desc">01 tháng 06</p>
-                                                    </div>
-                                                    <div class="item-desc">
-                                                        <p class="title">Loại ảnh</p>
-                                                        <p class="desc">JPG</p>
-                                                    </div>
-                                                </div>
-                                                <div class="bs-row xs-50-15">
-                                                    <div class="item-desc">
-                                                        <p class="title">tên file</p>
-                                                        <p class="desc">20171208_123106.jpg</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -158,7 +122,7 @@
 </form>
 
     <!--jquery-->
-
+   
     <script type="text/javascript" src="/backend/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/backend/js/bootstrap.js"></script>
     <script type="text/javascript" src="/backend/js/aos.js"></script>
@@ -167,7 +131,12 @@
     <script type="text/javascript" src="/backend/js/fabric.js"></script>
     <script type="text/javascript" src="/backend/js/darkroom.js"></script>
     <script type="text/javascript" src="/backend/js/main.js"></script>
-        <script type="text/javascript">
+    <script src="/laravel-ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/laravel-ckeditor/adapters/jquery.js" type="text/javascript"></script>
+    <script>
+        $('.contentckeditor').ckeditor();
+    </script>
+    <script type="text/javascript">
         $(function(){
             $('#save').on('click' ,function(e){
 
