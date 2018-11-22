@@ -14,6 +14,9 @@ use App\Profile;
 use App\Project;
 use App\Video;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\PendingMail;
+use App\Mail\SendMailable;  
+
 class HomeController extends Controller
 {
     /**
@@ -72,20 +75,17 @@ class HomeController extends Controller
         $this->middleware('auth');
         return view('layouts.admin');
     }
-     public function feedback(Request $request)
+     public function feedbackcus(Request $request)
     {
-        Mail::to($request->email)
-            ->send($request->content);
+        $name = 'Krunal';
+        Mail::to('hieule1191997@gmail.com')
+            ->send(new SendMailable());
 
-        if(Mail::failures()) {
-            return response()->json(array(
-                'status' => 204,
-                'msg'    => 'success',
-            ));
-        }
-        return response()->json(array(
-            'status' => 400,
-            'msg'    => 'fail',
-        ));
+        return 'Email was sent';
+        // 
     }
+        // return response()->json(array(
+        //     'status' => 400,
+        //     'msg'    => 'fail',
+        // ));
 }

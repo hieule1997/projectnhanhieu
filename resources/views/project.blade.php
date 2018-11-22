@@ -32,12 +32,6 @@
                         <div class="body-intro">
                             <div class="project">
                                 <div class="project-header">
-                                    <div class="tab-control active" data-show="#document">
-                                        <h3 class="title">DỰ ÁN NGHIÊN CỨU</h3>
-                                    </div>
-                                    <div class="tab-control" data-show="#procedure">
-                                        <h3 class="title general-intro">DỰ ÁN TRIỂN KHAI</h3>
-                                    </div>
                                 </div>
                                 <div class="project-content">
                                     <div class="tab-content">
@@ -57,7 +51,7 @@
                                                                     <span class="view">
                                                                         <img src="fontend/images/zoom.png" alt="">
                                                                         <h4 class="title-project">{{$item->projectName}}</h4>
-                                                                        <p class="client">Client: John Smith</p>
+                                                                        <p class="client">By : Admin </p>
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -70,34 +64,7 @@
                                                 {{ $data->links() }}
                                             </div>
                                         </div>
-                                        <div class="tab-item" id="procedure">
-                                            <div class="item__">
-                                                <div class="bs-row bs-row-sm15">
-                                                    @foreach($data as $item)
-                                                    <div class="bs-col sm-33-15">
-                                                        <div class="items-project">
-                                                            <div class="img">
-                                                                <div class="ImagesFrame">
-                                                                    <a href="" class="ImagesFrameCrop0">
-                                                                    <img src="fontend/images/img-project-4.jpg" alt="" class="wide">
-                                                                </a>
-                                                                </div>
-                                                                <a href="" class="overlay"><span class="view">
-                                                                        <img src="fontend/images/zoom.png" alt="">
-                                                                        <h4 class="title-project">{{ $item->projectName}}</h4>
-                                                                        <p class="client">Client: John Smith</p>
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="row" id="pages">
-                                                {{ $data->links() }}
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

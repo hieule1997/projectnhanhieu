@@ -11,11 +11,9 @@
                         <div class="content">
                             <div class="tab-control">
                                 <div class="control-item active" data-show="#images" show-button=".add__img">
-                                    <p class="desc">hình ảnh</p>
+                                    <p class="desc">Hình ảnh</p>
                                 </div>
-                                <div class="control-item" data-show="#video" show-button=".add__video">
-                                    <p class="desc">video</p>
-                                </div>
+                               
 
                             </div>
 
@@ -27,15 +25,13 @@
                                              <button class="media__btn add__btn add__video show__popup base__btn active" type="button" show-popup="#popup-addimage"><img src="images/icon_video_add.gif" alt="">Thêm Image</button>
                                             <!-- <input type="file" class="file__document"> -->
                                         </div>
-                                        <button class="media__btn edit__btn show__popup more__btn" type="button" show-popup="#popup-edit"><img src="images/icon_edit.gif" alt="">Sửa</button>
-                                        <button class="media__btn delete__btn more__btn show__popup" type="button" show-popup="#popup-delete"><img src="images/icon_recycle.gif" alt="">Xóa</button>
                                     </div>
 
                                     <div class="media-day">
                                         <div class="media-content">
                                             <div class="bs-row bs-row-sm15 bs-row-lg15 bs-row-md10 bs-row-xs10 bs-row-tn5">
                                                 @foreach($image as $item)
-                                                <div class="bs-col lg-25-15 md-25-10 sm-25-15 xs-33-10 tn-50-5">
+                                                <div class="bs-col lg-25-15 md-25-10 sm-25-15 xs-33-10 tn-50-5 " id="item{{$item->id}}">
                                                     <div class="img">
                                                         <div class="ImagesFrame">
                                                             <a class="ImagesFrameCrop0">
@@ -43,7 +39,11 @@
                                                             </a>
                                                         </div>
                                                         <div class="overlay">
-                                                            <span class="number">{{$item->id}}</span>
+                                                             @php
+                                                                        $url_remove = route('image.destroy',$item->id);
+                                                                        
+                                                              @endphp
+                                                            <span class="number"><a href="javascript:;" onclick="confirmRemove('{{$url_remove}}','{{$item->id}}');">Xóa</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -56,37 +56,7 @@
                                         </div>
 
                                 </div>
-                                <div class="tab-item" id="video">
-                                    <div class="media-button">
-                                        <div class="base-button">
-                                            <button class="media__btn add__btn add__video show__popup base__btn" type="button" show-popup="#popup-add"><img src="images/icon_video_add.gif" alt="">Thêm video</button>
-                                        </div>
-                                        <button class="media__btn delete__btn more__btn show__popup" type="button" show-popup="#popup-delete"><img src="images/icon_recycle.gif" alt="">Xóa</button>
-                                    </div>
-                                    <div class="media-day">
-                                        <div class="media-content">
-                                            <div class="bs-row bs-row-sm15 bs-row-lg15 bs-row-md10 bs-row-xs10 bs-row-tn5">
-                                                @foreach($video as $item)
-                                                <div class="bs-col lg-25-15 md-25-10 sm-25-15 xs-33-10 tn-50-5">
-                                                    <div class="video">
-                                                        <div class="ImagesFrame">
-                                                            <a class="ImagesFrameCrop0">
-                                                                <img src="{{$item->videoFile}}" />
-                                                            </a>
-                                                        </div>
-                                                        <div class="overlay">
-                                                            <span class="number">{{ $item->id }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" id="pages" style="text-align: center;">
-                                            {{ $video->links() }}
-                                        </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -97,6 +67,7 @@
             <div class="step active" id="step1">
                 <form method="POST" action=" {{ route('image.store')}}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                 <div class="popup-header">
                     <button class="back__btn close__popup" type="button"><img src="images/icon_back.gif" alt="">Thư viện ảnh</button>
                 </div>
@@ -143,6 +114,7 @@
                 <form  method="POST" action=" {{ route('image.store')}}" enctype="multipart/form-data">
                 <div class="popup-header">
                     @csrf
+
                     <button class="back__btn close__popup" type="button"><img src="images/icon_back.gif" alt="">Thư viện ảnh</button>
                 </div>
                 <div class="popup-body">
@@ -198,7 +170,7 @@
             </div>
         </form>
     </div>
-    <div class="popup" id="popup-delete">
+   <!--  <div class="popup" id="popup-delete">
         <div class="popup-content popup-delete">
             <span class="close__popup"><img src="images/icon_close_red.gif" alt=""></span>
             <div class="notice-content">
@@ -208,7 +180,7 @@
                 <button class="notice__btn close__popup agree__btn red__btn" type="button">Đồng ý</button>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
 @section('js')
         <script type="text/javascript">
@@ -278,7 +250,7 @@
           var check = window.confirm('Bạn có chắc chắn muốn xóa');
           if(check){
              $.ajax({
-              "type": "POST",
+              "type": "DELETE",
               "url": url,
               "data": {
                 "_token" : "{{csrf_token()}}",
@@ -289,7 +261,7 @@
                 console.log(rs);
                 if(rs.status == 204)
                 {
-                  $('#item'+id).remove();
+                $('#item'+id).remove();
                   alert("Xóa thành công");
 
                 }else{

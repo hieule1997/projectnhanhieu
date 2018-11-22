@@ -25,62 +25,19 @@
                 <div class="bs-container">
                     <div class="content-intro">
                         <div class="head-intro" style="margin-bottom: 50px;">
-                            <h3 class="title-intro">CÁC DỰ ÁN TIÊU BIỂU</h3>
+                            <h3 class="title-intro">CÁC HÌNH ẢNH TIÊU BIỂU</h3>
                             <p class="my-name">MY LATEST WORK</p>
                         </div>
                         <div class="body-intro">
                             <div class="project">
                                 <div class="project-header">
-                                    <div class="tab-control active" data-show="#document">
-                                        <h3 class="title">VIDEO CLIP</h3>
-                                    </div>
                                     <div class="tab-control" data-show="#procedure">
                                         <h3 class="title general-intro">HÌNH ẢNH</h3>
                                     </div>
                                 </div>
                                 <div class="project-content">
                                     <div class="tab-content">
-                                        <div class="tab-item active" id="document">
-                                            <div class="item__">
-                                                <div class="bs-row bs-row-sm15">
-                                                    @foreach($video as $item)
-                                                    <div class="bs-col sm-33-15">
-                                                        <div class="item-library">
-                                                            <div class="img">
-                                                                <div class="ImagesFrame">
-                                                                    <a class="ImagesFrameCrop0">
-                                                                    <img src="{{ $item->videoFile }}" alt="" class="tall">
-                                                                </a>
-                                                                </div>
-                                                                <!-- Button trigger modal -->
-                                                                <button type="button" class="btn btn-primary play-video" data-toggle="modal" data-target="#exampleModal"></button>
-
-                                                                <!-- Modal -->
-                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">Video</h5>
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <iframe width="100%" height="450px" src="{{ $item->videoLink }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                                 <div class="row" id="pages" style="text-align: center;">
-                                                        {{ $video->links() }}
-                                                    </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="tab-item" id="procedure">
+                                        <div class="tab-item active" id="procedure">
                                             <div class="item__">
                                                 <div class="bs-row bs-row-sm15">
                                                     @foreach($image as $item)
@@ -92,7 +49,7 @@
                                                                     <img src="{{$item->imageFile }}" alt="" class="tall">
                                                                 </a>
                                                                 </div>
-                                                                <a class="overlay" href="images/img-project-1.jpg" title="" data-lightbox="lightbox">
+                                                                <a class="overlay" href="{{$item->imageFile }} " title="" data-lightbox="lightbox">
                                                                     <span class="view">
                                                                         <img src="fontend/images/zoom.png" alt="">
                                                                     </span>

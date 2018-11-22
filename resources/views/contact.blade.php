@@ -31,7 +31,7 @@
                         <div class="body-intro">
                             <div class="contact">
                                 <div class="opening">
-                                    <p>Please Feel free to get in Touch Anytime, whether for Work Inquiries or to just say Hello!</p>
+                                   
                                 </div>
                                 <div class="content-contact">
                                     <div class="bs-row bs-row-sm15">
@@ -42,7 +42,7 @@
                                                         <h4>ĐỊA CHỈ</h4>
                                                     </div>
                                                     <div class="content">
-                                                        <p>133 South Kutubkhali, Donia, Jatrabari<br>Dhaka-1236</p>
+                                                        <p>Số 1,Ngõ 37,Trần Quốc Hoàn, Cầu Giấy,Hà Nội </p>
                                                     </div>
                                                 </div>
                                                 <div class="item-info">
@@ -50,7 +50,7 @@
                                                         <h4>THÔNG TIN LIÊN HỆ</h4>
                                                     </div>
                                                     <div class="content">
-                                                        <p>onathondoe@gmail.com<br>01 (800) 433 633</p>
+                                                        <p>Khoa.vanduong@meditech.vn<br>+4573-8365-9374</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-info">
@@ -58,7 +58,7 @@
                                                         <h4>GIỜ LÀM VIỆC</h4>
                                                     </div>
                                                     <div class="content">
-                                                        <p>Daily 10.00 to 22.00 ( Sunday Avilable )</p>
+                                                        <p>Daily 8.00 to 17.30 ( Trừ chủ nhật )</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,17 +122,8 @@
                 "content":content,
               },
               "datatype": "json",
-              success : function(rs) {
-                console.log(rs);
-                if(rs.status == 204)
-                {
-
-                  alert("Gửi thành công");
-
-                }else{
-                  alert('Lỗi');
-                }
-                
+              complete : function(rs) {
+                alert('Gửi thành công');
               }
           });
         });
