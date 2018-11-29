@@ -188,9 +188,8 @@
         });
         });
 
-        $('#close').on('click',function(){
-
-            window.location.href = $('input[name=urlback]').val();
+        $("#close").on('click',function(){
+            window.location.assign("/post");
         });
     </script>
     <script type="text/javascript">
@@ -275,7 +274,9 @@
             });
         });
 
-
+        $("#close").on('click',function(){
+            window.location.assign("/post");
+        });
 
         $(".show__popup").click(function() {
             $(".web").addClass("popup-active");

@@ -90,7 +90,7 @@ class NewsController extends Controller
         else {
             $model->image = $pic;
         }
-        $model->createDate = date("Y-m-d H:i:s");
+        $model->newsDate = date("Y-m-d H:i:s");
         $model->update();
         return Redirect( route("news.edit",$id) );
     }

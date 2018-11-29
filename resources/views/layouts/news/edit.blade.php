@@ -19,7 +19,7 @@
 </head>
 
 <body> 
-    <form method="POST" action="{{ route('news.update') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('news.update',$model->id) }}" enctype="multipart/form-data">
      @csrf
      @method('PUT')
     <div class="web web-edit">
@@ -258,7 +258,9 @@
             $("#step1").addClass("active");
         });
 
-
+        $("#close").on('click',function(){
+            window.location.assign("/news");
+        });
 
 
         $(".edit__title").click(function() {

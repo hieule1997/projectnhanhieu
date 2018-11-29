@@ -166,7 +166,9 @@
         });
 
 
-
+        $("#close").on('click',function(){
+            window.location.assign("/news");
+        });
         $(".popup-slide").find(".edit__img").click(function() {
             var imgURL = $(this).prev().children("img").attr("src");
             $(".tool-body").html('<div class="img"><img src="" /></div>');

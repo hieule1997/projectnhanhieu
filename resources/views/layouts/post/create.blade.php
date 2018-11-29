@@ -165,7 +165,9 @@
             tabsize: 2
         });
 
-
+        $("#close").on('click',function(){
+            window.location.assign("/post");
+        });
 
         $(".popup-slide").find(".edit__img").click(function() {
             var imgURL = $(this).prev().children("img").attr("src");

@@ -189,9 +189,8 @@
         });
         });
 
-        $('#close').on('click',function(){
-
-            window.location.href = $('input[name=urlback]').val();
+        $("#close").on('click',function(){
+            window.location.assign("/project");
         });
     </script>
     <script type="text/javascript">
@@ -218,7 +217,6 @@
             height: 300,
             tabsize: 2
         });
-
 
 
         $(".popup-slide").find(".edit__img").click(function() {
